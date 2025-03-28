@@ -7,7 +7,7 @@ Feature: YouTube
     And I dismiss the YouTube cookie popup
     And I do not see the YouTube cookie popup
 
-  @yt1
+  @youtube1
   Scenario: Searching for Cucumber
     When I search for "cucumber.io" in YouTube
     And I wait for 1 second

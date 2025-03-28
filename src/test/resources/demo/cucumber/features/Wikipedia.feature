@@ -5,7 +5,7 @@ Feature: Wikipedia
   Background:
     Given I am on the Wikipedia search page
 
-  @w1
+  @wikipedia1
   Scenario Outline: Learning about <Query>
     When I search for "<Query>" in Wikipedia
     And I wait for 1 second

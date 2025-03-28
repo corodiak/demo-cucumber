@@ -8,7 +8,7 @@ Feature: Search
     # NOTE: There will be a captcha challenge
     And I do not see the Google cookie popup
 
-  @g1
+  @google1
   Scenario: Searching for Cucumber
     When I search for "Cucumber framework" in Google
     Then I see "Cucumber" in page title
