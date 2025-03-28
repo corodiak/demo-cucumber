@@ -2,16 +2,19 @@ package demo.cucumber.steps;
 
 import demo.cucumber.common.RunCucumberTest;
 import demo.cucumber.common.TestContext;
+import demo.cucumber.common.utils.DemoLogger;
 import demo.cucumber.pages.YoutubePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.logging.Logger;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 
 public class YoutubePageSteps {
-
+    private static final Logger log = DemoLogger.getDemoLogger(YoutubePageSteps.class.getName());
     private final TestContext context;
 
     public YoutubePageSteps() {

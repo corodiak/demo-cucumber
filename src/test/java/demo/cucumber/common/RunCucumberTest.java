@@ -111,6 +111,7 @@ public class RunCucumberTest {
 
         // Close RemoteWebdriver
         if (context.isDriverCreated()) {
+            log.info("Closing RemoteWebDriver...");
             context.getDriver().quit();
         }
     }
@@ -147,7 +148,7 @@ public class RunCucumberTest {
 
     // Template for step summary string
     private String createStepSummaryString(String ansiColor, Step step) {
-        return String.format("::--> %s%s\t%s\t%s%s",
+        return String.format("::--> %s%s\t\t\t%s\t%s%s",
                 ansiColor, step.getStepResult().getType(), step.getKeyword(), step.getStepName(), ANSI_RESET.getCode());
     }
 }

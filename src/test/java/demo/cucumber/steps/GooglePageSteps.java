@@ -2,16 +2,19 @@ package demo.cucumber.steps;
 
 import demo.cucumber.common.RunCucumberTest;
 import demo.cucumber.common.TestContext;
+import demo.cucumber.common.utils.DemoLogger;
 import demo.cucumber.pages.GooglePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.logging.Logger;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class GooglePageSteps {
-
+    private static final Logger log = DemoLogger.getDemoLogger(GooglePageSteps.class.getName());
     private final TestContext context;
 
     public GooglePageSteps() {

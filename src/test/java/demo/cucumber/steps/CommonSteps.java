@@ -2,16 +2,19 @@ package demo.cucumber.steps;
 
 import demo.cucumber.common.RunCucumberTest;
 import demo.cucumber.common.TestContext;
+import demo.cucumber.common.utils.DemoLogger;
 import demo.cucumber.pages.WikipediaPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.time.Duration;
+import java.util.logging.Logger;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
 
 public class CommonSteps {
+    private static final Logger log = DemoLogger.getDemoLogger(CommonSteps.class.getName());
     private final TestContext context;
 
     public CommonSteps() {

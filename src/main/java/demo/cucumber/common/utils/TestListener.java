@@ -5,7 +5,11 @@ import demo.cucumber.common.model.Result;
 import io.cucumber.plugin.ConcurrentEventListener;
 import io.cucumber.plugin.event.*;
 
+import java.util.logging.Logger;
+
 public class TestListener implements ConcurrentEventListener {
+    private static final Logger log = DemoLogger.getDemoLogger(TestListener.class.getName());
+
     private static TestCase testCase;
     private static Result stepResult;
 
@@ -26,6 +30,9 @@ public class TestListener implements ConcurrentEventListener {
                     ? event.getResult().getError().getMessage()
                     : null;
 
+            log.fine(String.format("Set result of step '%s' to '%s'",
+                    ((PickleStepTestStep) event.getTestStep()).getStep().getText(), status));
+
             stepResult = new Result(
                     ResultType.getType(status),
                     message);
@@ -37,6 +44,7 @@ public class TestListener implements ConcurrentEventListener {
     }
 
     private void handleTestCaseStarted(TestCaseStarted event) {
+
         testCase = event.getTestCase();
     }
 

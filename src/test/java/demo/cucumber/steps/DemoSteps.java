@@ -1,15 +1,27 @@
 package demo.cucumber.steps;
 
+import demo.cucumber.common.RunCucumberTest;
+import demo.cucumber.common.TestContext;
+import demo.cucumber.common.utils.DemoLogger;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import java.util.logging.Logger;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class DemoSteps {
+    private static final Logger log = DemoLogger.getDemoLogger(DemoSteps.class.getName());
+    private final TestContext context;
+
     private String expected;
     private String actual;
+
+    public DemoSteps() {
+        this.context = RunCucumberTest.getContext();
+    }
 
     @Given("I set actual result to {string}")
     public void iSetActual(String actual) {
@@ -28,7 +40,5 @@ public class DemoSteps {
     }
 
     @Then("This step should be skipped")
-    public void skipped() {
-
-    }
+    public void skipped() {}
 }

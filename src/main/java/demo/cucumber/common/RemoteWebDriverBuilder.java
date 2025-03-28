@@ -1,5 +1,6 @@
 package demo.cucumber.common;
 
+import demo.cucumber.common.utils.DemoLogger;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -7,14 +8,19 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.logging.Logger;
 
 public class RemoteWebDriverBuilder {
+    private static final Logger log = DemoLogger.getDemoLogger(RemoteWebDriverBuilder.class.getName());
+
     private String url;
     private URL hubUrl = null;
     private Capabilities capabilities = null;
 
     // Set the URL to open the browser with
     public RemoteWebDriverBuilder setStartURL(String url) {
+        log.info("Setting start url to " + url);
+
         this.url = url;
         return this;
     }
@@ -25,6 +31,8 @@ public class RemoteWebDriverBuilder {
 
     public RemoteWebDriverBuilder setHub(String hubHost, String hubPort) {
         String url = "http://" + hubHost + ":" + hubPort + "/wd/hub";
+        log.info(String.format("Setting hubURL to '%s'", url));
+
         try {
             this.hubUrl = new URL(url);
         } catch (MalformedURLException e) {
@@ -34,6 +42,7 @@ public class RemoteWebDriverBuilder {
     }
 
     public RemoteWebDriverBuilder setCapabilities(Capabilities capabilities) {
+        log.info(String.format("Setting capabilities to '%s'", capabilities));
         this.capabilities = capabilities;
         return this;
     }
@@ -49,6 +58,7 @@ public class RemoteWebDriverBuilder {
         if (capabilities == null) {
             throw new RuntimeException("No capabilities specified.");
         }
+        log.info(String.format("Creating driver on '%s' with capabilities '%s'", hubUrl, capabilities));
 
         RemoteWebDriver driver = new RemoteWebDriver(hubUrl, capabilities);
 
