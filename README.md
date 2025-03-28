@@ -20,8 +20,11 @@
    **Mandatory:** `-DhubPort=4444` is used to specify the port where the Selenium Grid is running.
 
 ### TODO
+ - [X] Test context
+ - [X] Setup and teardown
  - [ ] Support for running tests via Jenkins
- - [ ] Improved logging
+ - [X] Improved logging
  - [ ] Improved reporting
-   - [ ] Generate Cucumber reports
-   - [ ] Console output
+   - [X] Generate Cucumber reports
+     - [ ] Attach screenshots
+   - [X] Console output
