@@ -32,10 +32,16 @@
    - Go to Manage Jenkins > Global Tool Configuration
    - Add Java and Maven installations
 
+### Creating a Jenkins pipeline
+
 ### TODO
  - [X] Test context
  - [X] Setup and teardown
  - [ ] Support for running tests via Jenkins
+   - [X] Checkout code from Git
+   - [X] Run tests
+   - [X] Generate and show reports
+   - [ ] Run tests on remote Selenium Grid
  - [X] Improved logging
  - [ ] Improved reporting
    - [X] Generate Cucumber reports
