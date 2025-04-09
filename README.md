@@ -33,15 +33,58 @@
    - Add Java and Maven installations
 
 ### Creating a Jenkins pipeline
+1. Check "This project is parameterized"
+   - Add a String parameter
+      - Name: `TAGS`
+      - Default value: 
+   - Add a String parameter
+      - Name: `BRANCH`
+      - Default value: `main`
+2. Select "Pipeline script from SCM"
+   - SCM: Git
+     - URL: `<URL to the Git repository>`
+     - Credentials: `<Git credentials>`
+       - SSH Username with private key from the Jenkins machine linked to the git repository
+     - Branch Specifier: `${BRANCH}`
+       - The branch to checkout to get the pipeline script
+   - Script Path: `<Path to the Jenkinsfile>`
+
+### Remote Selenium grid setup
+1. Download the Selenium server jar file from the [Selenium website](https://www.selenium.dev/downloads/) \
+   `wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.31.0/selenium-server-4.31.0.jar`
+2. Download the Chrome driver \
+   `apt-get install chromium-chromedriver`
+3. Install Xvfb \
+   `apt-get install xvfb`
+4. Create a "node-config.toml" \
+   ```toml
+   [server]
+   port = 4444
+
+   [node]
+   detect-drivers = false
+
+   [[node.driver-configuration]]
+   browser-name = "chrome"
+   display-name = "<Some Name>"
+   max-sessions = 4
+   webdriver-executable = "/usr/bin/chromedriver"
+   stereotype = '{"browserName": "chrome"}'
+   ```
+5. Start the Selenium server \
+   `xvfb-run -a java -jar selenium-server-<VERSION>.jar standalone --config node-config.toml`
 
 ### TODO
  - [X] Test context
  - [X] Setup and teardown
- - [ ] Support for running tests via Jenkins
+ - [ ] Parallel test execution
+ - [ ] Add support for Firefox
+ - [ ] Automatic deflakes
+ - [X] Support for running tests via Jenkins
    - [X] Checkout code from Git
    - [X] Run tests
    - [X] Generate and show reports
-   - [ ] Run tests on remote Selenium Grid
+   - [X] Run tests on remote Selenium Grid
  - [X] Improved logging
  - [ ] Improved reporting
    - [X] Generate Cucumber reports

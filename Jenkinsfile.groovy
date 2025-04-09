@@ -1,13 +1,13 @@
 pipeline {
     agent any
 
-    // When creating the pipeline, add the parameter 'TAGS'
+    // When creating the pipeline, add the parameter 'TAGS' and 'BRANCH'
 
     stages {
         stage('Checkout') {
             steps {
                 // Get some code from a GitHub repository
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'demo_cucumber', url: 'https://github.com/corodiak/demo-cucumber.git']])
+                checkout scmGit(branches: [[name: '*/${BRANCH}']], extensions: [], userRemoteConfigs: [[credentialsId: 'demo_cucumber', url: 'https://github.com/corodiak/demo-cucumber.git']])
             }
         }
 
@@ -19,7 +19,7 @@ pipeline {
                         sh """
                             mvn \\
                             -Dcucumber.filter.tags='${TAGS}' \\
-                            -DhubHost='localhost' \\
+                            -DhubHost='192.168.178.58' \\
                             -DhubPort='4444' \\
                             clean test
                         """
